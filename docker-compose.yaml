@@ -1,0 +1,15 @@
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    restart: always
+    env_file:
+      - .env
+    environment:
+      # Включить WebSocket для уведомлений
+      - WEBSOCKET_ENABLED=true
+    volumes:
+      - ./config_vaultwarden:/data   # Папка для базы данных и вложений
+    ports:
+      - "8080:80"
+      - "3012:3012"
